@@ -43,6 +43,7 @@ export default function Spinner() {
   /* STEP 1 */
 
   /* STEP 4 */
+  const test = {};
 
   return (
     <div className="widget-spinner container">
