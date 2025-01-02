@@ -40,20 +40,44 @@ export default function Programmers() {
     marginTop: "0.5em",
     color: "royalblue", // 🤔
   };
+  const [programmers, setProgrammers] = useState(listOfAwesome);
+  const [featured, setFeatured] = useState("3");
+  const featuredName = getNameOfFeatured();
+  const handleClick = () => {
+   
+  };
+  const handleClick2 = () => {
+    // This click handler should set the id of the currently celebrated programmer to the previous one.
+    // If the first programmer is currently featured, the last one should be featured next.
+  };
+  
+    return (
+      <div className="widget-programmers container">
+        <h2>Programmers</h2>
+        <div className="programmers">
+          {programmers.map((programmer) => (
+            <div key={programmer.id}>{programmer.name}</div>
+          ))}
+        </div>
+        <div>
+          {featured ? (
+            <div>
+              <div style={style}>{featuredName}</div>
+              <button onClick={handleClick}>Next Programmer</button>
+              <button onClick={handleClick2}>Last Programmer</button>
+            </div>
+          ) : (
+            <div>
+              <div style={style}>Select a programmer to feature</div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+    
+  
+  
+  
 
-  return (
-    <div className="widget-programmers container">
-      <h2>Programmers</h2>
-      <div className="programmers">
-        {/* Nasty bug! We should map over a slice of state, instead of 'listOfAwesome'.
-          We might say: "it works, though!" But if the list of programmers is not state,
-          we could never add or edit programmers in the future. The list would be a static thing. ;)" */}
-      </div>
-      <div>
-        {/* // Ternaries are fantastic to render "one thing or the other" depending
-        on the "truthiness" of something. // Pseudo-code: if the currently
-        featured id is truthy render div 1, otherwise render div 2. Fix! */}
-      </div>
-    </div>
-  );
+
 }

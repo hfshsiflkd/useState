@@ -34,7 +34,7 @@ STEP 6:
   We need to add an extra prop to the input element like so: value={inputValue}
 */
 
-import React from "react"; /* STEP 0 */
+import React, { useState } from "react"; /* STEP 0 */
 
 export default function Input() {
   /* STEP 1 */
@@ -50,18 +50,34 @@ export default function Input() {
     fontSize: "1.5em",
     marginBottom: "0.3em",
   };
-  
+  const [inputValue, setInputValue] = useState("");
+  function handleChange(evt) {
+    setInputValue(evt.target.value);
+  }
+  function reset() {
+    setInputValue("");
+  }
+  function handleClick() {
+    setInputValue(inputValue + 1);
+  }
+ function changeColor() {
+    if (inputValue.length > 7) {
+      return "royalblue";
+    } else {
+      return "crimson";
+    }
+  }
 
   return (
     <div className="widget-input container">
       <h2>Input</h2>
-      <div style={style}></div>
-
-      {/* STEP 3 */}
+      <div style={{style, color : changeColor()}}>{inputValue}</div>
+      
       <div>
-        <input type="text" />
-        {/* STEP 6 */}
-        <button>Reset</button>
+        <input type="text" value={inputValue} onChange={handleChange}/>
+        <button style={{ cursor: "pointer" }} onClick={reset}>
+          Reset
+        </button>
       </div>
     </div>
   );
