@@ -50,6 +50,7 @@ export default function Input() {
     fontSize: "1.5em",
     marginBottom: "0.3em",
   };
+  
 
   return (
     <div className="widget-input container">

@@ -46,25 +46,58 @@ STEP 6:
   This click handler needs to use 'setCount' to set the 'count' to be the initial number you chose.
 */
 
-import React from "react"; /* STEP 0 */
+import React, { useState } from "react"; /* STEP 0 */
 
 export default function Counter() {
   /* STEP 1 */
+  const [number, setNumber] = useState(0);
+
+  /* STEP 2 */
+
+  function incrementclick() {
+    setNumber(number + 1);
+  }
+  function decrementclick() {
+    setNumber(number - 1);
+    if (number === 0) {
+      setNumber(0);
+    }
+  }
+  function resetclick() {
+    setNumber(0);
+  }
+  function evenorodd() {
+    if (number % 2 === 0) {
+      return "even";
+    } else {
+      return "odd";
+    }
+  }
 
   const style = {
     fontSize: "1.5em",
     marginBottom: "0.3em",
+    color: number % 2 === 0 ? "royalblue" : "crimson",
   };
-
+ const color = number % 2 === 0 ? "even" : "odd";
   return (
     <div className="widget-counter container">
       <h2>Counter</h2>
-      <div style={style}>Number</div>
+      <div style={style}>Number {number} is {color}</div>
 
       <div>
-        <button>Increment</button>
-        <button>Decrement</button>
-        <button>Reset</button>
+        <button style={{ cursor: "pointer" }} onClick={incrementclick}>
+          Increment
+        </button>
+        <button
+          style={{ cursor: number === 0 ? "none" : "pointer" }}
+          onClick={decrementclick}
+        >
+          Decrement
+        </button>
+        <button style={{ cursor: "pointer" }} onClick={resetclick}>
+          Reset
+        </button>
       </div>
     </div>
   );
